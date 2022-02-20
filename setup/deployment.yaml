@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: alpine
+  name: PacificoApp
   labels:
-    app: alpine
+    app: Pacifico
 spec:
   selector:
     matchLabels:
-      app: alpine
+      app: Pacifico
   template:
     metadata:
       labels:
-        app: alpine
+        app: Pacifico
     spec:
       containers:
-      - image: alpine:latest
-        name: alpine
+      - image: fcuriel/pacifico:release-16
+        name: Pacifico
         ports:
         - containerPort: 8080

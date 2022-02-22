@@ -14,7 +14,7 @@ spec:
         app: pacifico
     spec:
       containers:
-      - image: fcuriel/release-certificacion-<+pipeline.sequenceId>
+      - image: {{.Values.image}}
         name: pacifico
         ports:
         - containerPort: 8080

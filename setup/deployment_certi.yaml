@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pacifico-app
+  labels:
+    app: pacifico
+spec:
+  selector:
+    matchLabels:
+      app: pacifico
+  template:
+    metadata:
+      labels:
+        app: pacifico
+    spec:
+      containers:
+      - image: fcuriel/release-certificacion-<+pipeline.sequenceId>
+        name: pacifico
+        ports:
+        - containerPort: 8080

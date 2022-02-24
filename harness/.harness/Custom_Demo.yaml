@@ -1,0 +1,35 @@
+pipeline:
+    name: Custom Demo
+    identifier: Custom_Demo
+    allowStageExecutions: false
+    projectIdentifier: Latam_Arilines
+    orgIdentifier: default
+    tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: account.githubdamianaccount
+                repoName: demo_latam
+                build: <+input>
+    stages:
+        - stage:
+              name: Technology
+              identifier: Technology
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: account.LATAM_SE
+                          namespace: harness-delegate
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: Determine Technology from trigger
+                                identifier: Determine_Technology_from_trigger
+                                spec:
+                                    connectorRef: account.DockerDC
+                                    image: nginx:alpine
+                                    command: echo "Detectando tecnología..."

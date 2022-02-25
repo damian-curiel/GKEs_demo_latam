@@ -36,7 +36,8 @@ pipeline:
                                         echo "Detectando tecnología..."
                                         echo "Propiedades de trigger:  "
 
-                                        echo "Repo de payload: <+trigger.payload.pull_request.repository.name>"
+                                        echo "Repo de payload: <+trigger.payload.pull_request.repository.name> or <+trigger.payload.pull_request.repository.owner.login> or <+trigger.payload.repository.name>"
+                                        echo "<+eventPayload.repository.owner.name> or <+eventPayload.repository.login>
 
                                         echo "tipo: <+trigger.type>"
                                         echo "Repo: <+trigger.sourceRepo>"

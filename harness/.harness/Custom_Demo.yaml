@@ -36,8 +36,7 @@ pipeline:
                                         echo "Detectando tecnología..."
                                         echo "Propiedades de trigger:  "
 
-                                        echo "Repo de payload: <+trigger.payload.pull_request.repository.name> or <+trigger.payload.pull_request.repository.owner.login> or <+trigger.payload.repository.name>"
-                                        echo "<+eventPayload.repository.owner.name> or <+eventPayload.repository.login>
+                                        echo "Repo de payload: <+trigger.payload.repository.name>"
 
                                         echo "tipo: <+trigger.type>"
                                         echo "Repo: <+trigger.sourceRepo>"
@@ -50,3 +49,18 @@ pipeline:
                                         echo "URL repo: <+trigger.repoUrl>"
                                         echo "commit sha: <+trigger.commitSha>"
                                         echo "base commit sha: <+trigger.baseCommitSha>"
+
+                                        <+pipeline.variables.technology> = trim
+
+                                        tech = <+trigger.payload.repository.name>
+                                        trim = ${tech%%-*}
+
+                                        echo "trim: $trim"
+
+                                        <+pipeline.variables.technology> = $trim
+
+                                        echo "<+trigger.payload.repository.name>"
+    variables:
+        - name: technology
+          type: String
+          value: ""

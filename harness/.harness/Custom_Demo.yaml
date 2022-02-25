@@ -36,7 +36,7 @@ pipeline:
                                         echo "Detectando tecnología..."
                                         echo "Propiedades de trigger:  "
 
-                                        echo "Repo de evento: <+eventPayload.name>"
+                                        echo "Repo de payload: <+trigger.payload.name>"
 
                                         echo "tipo: <+trigger.type>"
                                         echo "Repo: <+trigger.sourceRepo>"

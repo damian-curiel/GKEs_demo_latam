@@ -31,7 +31,7 @@ pipeline:
                                 identifier: Determine_Technology_from_trigger
                                 spec:
                                     connectorRef: account.DockerDC
-                                    image: nginx:alpine
+                                    image: bash:devel-alpine3.15
                                     command: |-
                                         echo "Detectando tecnología..."
                                         echo "Propiedades de trigger:  "
@@ -50,7 +50,6 @@ pipeline:
                                         echo "commit sha: <+trigger.commitSha>"
                                         echo "base commit sha: <+trigger.baseCommitSha>"
 
-                                        <+pipeline.variables.technology> = trim
 
                                         tech = <+trigger.payload.repository.name>
                                         trim = ${tech%%-*}

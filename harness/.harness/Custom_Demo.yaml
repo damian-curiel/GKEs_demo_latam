@@ -32,4 +32,18 @@ pipeline:
                                 spec:
                                     connectorRef: account.DockerDC
                                     image: nginx:alpine
-                                    command: echo "Detectando tecnología..."
+                                    command: |-
+                                        echo "Detectando tecnología..."
+                                        echo "Propiedades de trigger:  "
+
+                                        echo "tipo: <+trigger.type>"
+                                        echo "Repo: <+trigger.sourceRepo>"
+                                        echo "Evento: <+trigger.event>"
+                                        echo "Rama destino: <+trigger.targetBranch>"
+                                        echo "Rama origen: <+trigger.sourceBranch>"
+                                        echo "PR #: <+trigger.prNumber>"
+                                        echo "PR Titulo: <+trigger.prTitle>"
+                                        echo "Usuario: <+trigger.gitUser>"
+                                        echo "URL repo: <+trigger.repoUrl>"
+                                        echo "commit sha: <+trigger.commitSha>"
+                                        echo "base commit sha: <+trigger.baseCommitSha>"

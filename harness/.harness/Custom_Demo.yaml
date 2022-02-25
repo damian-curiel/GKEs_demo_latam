@@ -59,6 +59,7 @@ pipeline:
                                         <+pipeline.variables.technology> = $trim
 
                                         echo "<+trigger.payload.repository.name>"
+                                    shell: Bash
     variables:
         - name: technology
           type: String

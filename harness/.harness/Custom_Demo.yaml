@@ -83,6 +83,50 @@ pipeline:
                                     connectorRef: account.DockerDC
                                     image: nginx:alpine
                                     command: echo "test"
+        - stage:
+              name: Deploy Kubernetes
+              identifier: Deploy_Kubernetes
+              description: ""
+              type: Deployment
+              spec:
+                  serviceConfig:
+                      serviceRef: k8s_sample_app
+                      serviceDefinition:
+                          type: Kubernetes
+                          spec:
+                              variables: []
+                  infrastructure:
+                      environmentRef: Desarrollo
+                      infrastructureDefinition:
+                          type: KubernetesDirect
+                          spec:
+                              connectorRef: account.LATAM_SE
+                              namespace: harness-delegate
+                              releaseName: release-<+INFRA_KEY>
+                      allowSimultaneousDeployments: false
+                  execution:
+                      steps:
+                          - step:
+                                name: Rollout Deployment
+                                identifier: rolloutDeployment
+                                type: K8sRollingDeploy
+                                timeout: 10m
+                                spec:
+                                    skipDryRun: false
+                      rollbackSteps:
+                          - step:
+                                name: Rollback Rollout Deployment
+                                identifier: rollbackRolloutDeployment
+                                type: K8sRollingRollback
+                                timeout: 10m
+                                spec: {}
+              tags: {}
+              failureStrategies:
+                  - onFailure:
+                        errors:
+                            - AllErrors
+                        action:
+                            type: StageRollback
     variables:
         - name: technology
           type: String

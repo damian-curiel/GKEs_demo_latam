@@ -65,6 +65,24 @@ pipeline:
                                     outputVariables:
                                         - name: technology
                                     shell: Bash
+        - stage:
+              name: Build Kubernetes
+              identifier: Build_Kubernetes
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      useFromStage: Technology
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: test
+                                identifier: test
+                                spec:
+                                    connectorRef: account.DockerDC
+                                    image: nginx:alpine
+                                    command: echo "test"
     variables:
         - name: technology
           type: String

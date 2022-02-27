@@ -75,14 +75,47 @@ pipeline:
                       useFromStage: Technology
                   execution:
                       steps:
-                          - step:
-                                type: Run
-                                name: test
-                                identifier: test
-                                spec:
-                                    connectorRef: account.DockerDC
-                                    image: nginx:alpine
-                                    command: echo "test"
+                          - parallel:
+                                - step:
+                                      type: Run
+                                      name: isPython
+                                      identifier: test
+                                      spec:
+                                          connectorRef: account.DockerDC
+                                          image: nginx:alpine
+                                          command: echo "test"
+                                - step:
+                                      type: Run
+                                      name: isJava
+                                      identifier: isJava
+                                      spec:
+                                          connectorRef: account.DockerDC
+                                          image: nginx:alpine
+                                          command: echo "es Java"
+                                - step:
+                                      type: Run
+                                      name: isNodeJS
+                                      identifier: isNodeJS
+                                      spec:
+                                          connectorRef: account.DockerDC
+                                          image: nginx:alpine
+                                          command: echo "Es NodeJS"
+                                - step:
+                                      type: Run
+                                      name: isGo
+                                      identifier: isGo
+                                      spec:
+                                          connectorRef: account.DockerDC
+                                          image: nginx:alpine
+                                          command: echo "es GO"
+                                - step:
+                                      type: Run
+                                      name: isRuby
+                                      identifier: isRuby
+                                      spec:
+                                          connectorRef: account.DockerDC
+                                          image: nginx:alpine
+                                          command: echo "Es Ruby"
         - stage:
               name: Deploy Kubernetes
               identifier: Deploy_Kubernetes
@@ -120,6 +153,7 @@ pipeline:
                                 type: K8sRollingRollback
                                 timeout: 10m
                                 spec: {}
+                  serviceDependencies: []
               tags: {}
               failureStrategies:
                   - onFailure:

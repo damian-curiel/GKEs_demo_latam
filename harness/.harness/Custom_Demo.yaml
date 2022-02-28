@@ -86,7 +86,7 @@ pipeline:
                                           command: echo "test"
                                 - step:
                                       type: Run
-                                      name: isJava
+                                      name: isJava8
                                       identifier: isJava
                                       spec:
                                           connectorRef: account.DockerDC
@@ -94,28 +94,28 @@ pipeline:
                                           command: echo "es Java"
                                 - step:
                                       type: Run
-                                      name: isNodeJS
+                                      name: isAngular
                                       identifier: isNodeJS
                                       spec:
                                           connectorRef: account.DockerDC
                                           image: nginx:alpine
-                                          command: echo "Es NodeJS"
+                                          command: echo "Es Angular"
                                 - step:
                                       type: Run
-                                      name: isGo
+                                      name: isReact
                                       identifier: isGo
                                       spec:
                                           connectorRef: account.DockerDC
                                           image: nginx:alpine
-                                          command: echo "es GO"
+                                          command: echo "es React"
                                 - step:
                                       type: Run
-                                      name: isRuby
+                                      name: isJava11
                                       identifier: isRuby
                                       spec:
                                           connectorRef: account.DockerDC
                                           image: nginx:alpine
-                                          command: echo "Es Ruby"
+                                          command: echo "Es Java 11"
         - stage:
               name: Deploy Kubernetes
               identifier: Deploy_Kubernetes

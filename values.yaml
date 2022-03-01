@@ -1,0 +1,5 @@
+name: harness-example
+replicas: 1
+
+image: null
+port: 8080

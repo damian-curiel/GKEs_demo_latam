@@ -1,5 +1,5 @@
 pipeline:
-    name: Custom Demo
+    name: Google Cloud Storage
     identifier: Custom_Demo
     allowStageExecutions: false
     projectIdentifier: Latam_Arilines

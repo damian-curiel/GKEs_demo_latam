@@ -1,10 +1,24 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: latam-airlines-gke
+  name: my-nginx-svc
   labels:
     app: latam
 spec:
+  type: LoadBalancer
+  ports:
+  - port: {{.Values.port}}
+  selector:
+    app: latam
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-latam-gke
+  labels:
+    app: latam
+spec:
+  replicas: 3
   selector:
     matchLabels:
       app: latam
@@ -14,17 +28,7 @@ spec:
         app: latam
     spec:
       containers:
-      - image: {{.Values.image}}
-        name: latam
+      - name: latam
+        image: {{.Values.image}}
         ports:
         - containerPort: {{.Values.port}}
-        readinessProbe:
-          tcpSocket:
-            port: {{.Values.port}}
-          initialDelaySeconds: 60
-          periodSeconds: 10
-        livenessProbe:
-          tcpSocket:
-            port: {{.Values.port}}
-          initialDelaySeconds: 120
-          periodSeconds: 20

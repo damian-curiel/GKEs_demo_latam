@@ -1,5 +1,5 @@
 name: harness-example
 replicas: 1
 
-image: fcuriel/latam:GKE-15
+image: fcuriel/latam:GKE-16
 port: 8080

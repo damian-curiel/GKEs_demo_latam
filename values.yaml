@@ -3,4 +3,4 @@ replicas: 1
 
 image: nginx:1.14.2
 port: 80
-tag: 39
+tag: 40

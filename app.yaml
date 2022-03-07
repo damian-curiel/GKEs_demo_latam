@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-nginx-svc
+  name: latam
   labels:
     app: latam
 spec:
@@ -14,7 +14,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-latam-gke
+  name: latam-gke
   labels:
     app: latam
 spec:
